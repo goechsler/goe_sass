@@ -1,6 +1,6 @@
 h1. Sassify Textpattern!
 
-This plugin allows the use of "SASS":http://sass-lang.com/ for CSS preprocessing within textpattern.
+This plugin allows the use of "SASS":http://sass-lang.com/ for CSS preprocessing within "Textpattern":http://textpattern.com/.
 
 It will compile the SASS code you define within the regular CSS style form to static CSS files, serving it through a tag which is quite similar to the well known &lt;txp:css /&gt; tag.
 
