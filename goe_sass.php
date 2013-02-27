@@ -177,9 +177,9 @@ if (txpinterface == 'admin') {
   register_callback('goe_sass_prefs', 'plugin_prefs.goe_sass');
 
   // Register event sassconfig with own tab under extensions and respective callback.
-  add_privs('sassconfig');
-  register_tab('extensions', 'sassconfig', gTxt('SASS Configuration'));
-  register_callback('goe_sass_admin', 'sassconfig');
+  add_privs('goe_sass_config');
+  register_tab('extensions', 'goe_sass_config', gTxt('SASS Configuration'));
+  register_callback('goe_sass_config', 'goe_sass_config');
 }
 
 
@@ -363,11 +363,11 @@ function goe_sass_cleanup($event, $step) {
 }
 
 /**
- * Callback for the "sassconfig" event.
+ * Callback for the "goe_sass_config" event.
  *
  * Show and process configuration form.
  */
-function goe_sass_admin($event, $step) {
+function goe_sass_config($event, $step) {
 
   include(txpath . '/include/txp_prefs.php');
 
