@@ -215,6 +215,9 @@ function goe_sass($atts) {
     $name = $n;
   }
 
+  // Dispose leading slash on $goe_sass_css_dir, if any, to prevent double
+  // slashes in output.
+  $goe_sass_css_dir = preg_replace('#^/#', '', $goe_sass_css_dir);
   $file = $goe_sass_css_dir . '/' . strtolower(sanitizeForUrl($name)).'.css';
 
   if (empty($goe_sass_css_dir) or !is_readable($path_to_site.'/'.$file)) {
@@ -229,13 +232,13 @@ function goe_sass($atts) {
   }
 
   if ($format == 'link') {
-    return '<link rel="'.$rel.'" type="text/css"'.
-      ($media ? ' media="'.$media.'"' : '').
-      ($title ? ' title="'.$title.'"' : '').
-      ' href="'.hu.$file.'" />';
+    return '<link rel="' . txpspecialchars($rel) . '" type="text/css"'.
+      ($media ? ' media="' . txpspecialchars($media) . '"' : '').
+      ($title ? ' title="' . txpspecialchars($title) . '"' : '').
+      ' href="' . hu . txpspecialchars($file) . '" />';
   }
 
-  return hu.$file;
+  return hu . txpspecialchars($file);
 }
 
 /**
