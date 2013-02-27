@@ -1,0 +1,9 @@
+h1. Sassify Textpattern!
+
+This plugin allows the use of "SASS":http://sass-lang.com/ for CSS preprocessing within textpattern.
+
+It will compile the SASS code you define within the regular CSS style form to static CSS files, serving it through a tag which is quite similar to the well known &lt;txp:css /&gt; tag.
+
+This plugin relies on "PHPSass":http://phpsass.com/ and borrows code from the "sassy":https://drupal.org/project/sassy module for Drupal. It started off as a hack of "rvm_css":http://textpattern.org/plugins/934/rvm_css, which can do similar things with LESS. 
+
+See plugin help for further details.
