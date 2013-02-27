@@ -251,7 +251,7 @@ function goe_sass_css_save() {
 
   $vars = goe_sass_vars();
   foreach ($vars as $var => $data) {
-    $$var = get_pref('$var');
+    $$var = get_pref($var);
   }
 
   $name = (ps('copy') or ps('savenew')) ? ps('newname') : ps('name');
@@ -290,12 +290,12 @@ function goe_sass_css_save() {
         return;
       }
     }
-
-    $file = $path_to_site . '/' . $goe_sass_css_dir . '/' . $filename;
-    $handle = fopen($file . '.css', 'wb');
+    $file = $path_to_site . '/' . $goe_sass_css_dir . '/' . $filename . '.css';
+    $handle = fopen($file, 'wb');
     fwrite($handle, $css);
     fclose($handle);
-    chmod($file . '.css', 0644);
+    chmod($file, 0644);
+
   }
 }
 
@@ -381,12 +381,7 @@ function goe_sass_config($event, $step) {
     $$var = get_pref($var);
 
     if (! $$var) {
-      if ($$var === '') {
-        safe_update('txp_prefs', "val = '{$data['default']}'", "name = '$var' and prefs_id ='1'");
-      }
-      else {
-        safe_insert('txp_prefs', "name='$var', val='{$data['default']}', prefs_id ='1'");
-      }
+      set_pref($var, $data['default']);
       $$var = $data['default'];
     }
   }
@@ -394,7 +389,7 @@ function goe_sass_config($event, $step) {
   // Save values if form was submitted
   if (gps("submit")) {
     foreach (array_keys($vars) as $var) {
-      safe_update('txp_prefs', "val = '".addslashes(ps($var))."'","name = '$var' and prefs_id ='1'");
+      set_pref($var, addslashes(ps($var)));
     }
     header("Location: index.php?event=goe_sass_config");
   }
@@ -434,12 +429,7 @@ function goe_sass_default_prefs($event, $step) {
     $$var = get_pref($var);
 
     if (! $$var) {
-      if ($$var === '') {
-        safe_update('txp_prefs', "val = '{$data['default']}'", "name = '$var' and prefs_id ='1'");
-      }
-      else {
-        safe_insert('txp_prefs', "name='$var', val='{$data['default']}', prefs_id ='1'");
-      }
+      set_pref($var, $data['default']);
     }
   }
 }
