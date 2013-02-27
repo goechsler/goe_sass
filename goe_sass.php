@@ -192,7 +192,7 @@ if (txpinterface == 'admin') {
 function goe_sass($atts) {
   global $txp_error_code, $s, $path_to_site, $version;
 
-  $goe_sass_css_dir = safe_field('val', 'txp_prefs', "name='goe_sass_css_dir'");
+  $goe_sass_css_dir = get_pref('goe_sass_css_dir');
 
   extract(lAtts(array(
     'format' => 'url',
@@ -251,7 +251,7 @@ function goe_sass_css_save() {
 
   $vars = goe_sass_vars();
   foreach ($vars as $var => $data) {
-    $$var = safe_field('val', 'txp_prefs', "name='$var'");
+    $$var = get_pref('$var');
   }
 
   $name = (ps('copy') or ps('savenew')) ? ps('newname') : ps('name');
@@ -310,7 +310,7 @@ function goe_sass_css_delete()
 {
   global $path_to_site;
 
-  $goe_sass_css_dir = safe_field('val', 'txp_prefs', "name='goe_sass_css_dir'");
+  $goe_sass_css_dir = get_pref('goe_sass_css_dir');
 
   if (safe_field('css', 'txp_css', "name='".doSlash(ps('name'))."'")) {
     return;
@@ -378,7 +378,7 @@ function goe_sass_config($event, $step) {
 
   // Read value from database or use defaults
   foreach ($vars as $var => $data) {
-    $$var = safe_field('val', 'txp_prefs', "name='$var'");
+    $$var = get_pref($var);
 
     if (! $$var) {
       if ($$var === '') {
@@ -431,7 +431,7 @@ function goe_sass_default_prefs($event, $step) {
 
   // If variables are not set or empty write default values.
   foreach ($vars as $var => $data) {
-    $$var = safe_field('val', 'txp_prefs', "name='$var'");
+    $$var = get_pref($var);
 
     if (! $$var) {
       if ($$var === '') {
