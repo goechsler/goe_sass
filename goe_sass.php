@@ -420,8 +420,6 @@ function goe_sass_config($event, $step) {
  */
 function goe_sass_default_prefs($event, $step) {
 
-  include(txpath . '/include/txp_prefs.php');
-
   $vars = goe_sass_vars();
 
   // If variables are not set or empty write default values.
