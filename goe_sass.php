@@ -396,7 +396,7 @@ function goe_sass_config($event, $step) {
     foreach (array_keys($vars) as $var) {
       safe_update('txp_prefs', "val = '".addslashes(ps($var))."'","name = '$var' and prefs_id ='1'");
     }
-    header("Location: index.php?event=sassconfig");
+    header("Location: index.php?event=goe_sass_config");
   }
 
   // Output form
@@ -411,7 +411,7 @@ function goe_sass_config($event, $step) {
   }
 
   $form .= tr(tda(graf(fInput("submit","submit", gTxt("Submit"), "publish")), ' colspan="2"'));
-  $form .= eInput("sassconfig");
+  $form .= eInput("goe_sass_config");
   $form .= endTable();
 
   echo form($form);
