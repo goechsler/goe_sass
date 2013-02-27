@@ -1,0 +1,75 @@
+<h1>Sassify Textpattern!</h1>
+
+<p>This plugin allows the use of <a href="http://sass-lang.com/">SASS</a> for CSS preprocessing
+within textpattern.</p>
+
+<p>It will compile the SASS code you define within the regular CSS style form to
+static CSS files, serving it through a tag which is quite similar to the well
+known &lt;txp:css /&gt; tag.</p>
+
+<p>This plugin relies on <a href="http://phpsass.com/">phpSASS</a> and borrows code from the
+<a href="https://drupal.org/project/sassy">sassy</a> module for Drupal.</p>
+
+<p>It started off as a hack of <a href="http://textpattern.org/plugins/934/rvm_css">rvm_css</a>,
+which can do similar things with LESS. Under the hood you will find that it is still
+heavily based on the code of the great <a href="http://vanmelick.com/">Ruud van Melick</a>.</p>
+
+<h2>Installation</h2>
+
+<ol>
+<li>Grab a copy of <a href="http://phpsass.com/">PHPSass</a> and put it somewhere your
+webserver can find it. The default location is &#8216;textpattern/vendor/phpsass&#8217;.</li>
+<li>Create a directory for the static CSS files on your webserver. You should make
+sure that PHP is able to write to that directory. The default path to this
+directory is /css.</li>
+<li>Install and enable the plugin like any other plugin out there.</li>
+<li>Check and adjust the configuration under the extensions tab. It ships with
+sane default. See section &#8220;Configuration&#8221; for details.</li>
+<li>If you want to play safe: Resave a CSS style definition form and see if there
+is a file written to the output directory you have configured in step 2. You&#8217;ll
+need to resave all your style sheets anyway to create the static files.</li>
+<li>Once your set you may replace all occurrences of &lt;txp:css /&gt; with
+&lt;txp:goe_sass /&gt;.</li>
+</ol>
+
+<p>The &lt;txp:goe_sass /&gt; tag supplied by this plugin has the exact same
+attributes as the built-in &lt;txp:css /&gt; tag and can be used as a drop-in
+replacement.</p>
+
+<p>Note: Because not all characters are allowed in filenames, avoid using
+non-alphanumeric characters in style sheet names.</p>
+
+<h2>Configuration</h2>
+
+<p>There are four configuration items for this plugin:</p>
+
+<dl>
+<dt>Path to PHPSass</dt>
+<dd>The filesystem path to PHPSass. This is where the file SassParser.php sits in.</dd>
+<dd>default value: [path to textpattern directory] + vendor/phpsass</dd>
+</dl>
+
+<dl>
+<dt>CSS Output Directory</dt>
+<dd>The location of the css output directory relative to document root.</dd>
+<dd>default value: /css</dd>
+</dl>
+
+<dl>
+<dt>Output Style</dt>
+<dd>There are several output styles to choose from. Choice is yours.</dd>
+<dd>nested: Each property+selector takes up 1 line selector indentation reflects nesting depth.</dd>
+<dd>expanded: Each property+selector takes up 1 line no selector indentation.</dd>
+<dd>compact: Each selector takes up 1 line with properties on the same line. No indentation.</dd>
+<dd>compressed: Compressed: Almost no whitespace designed to be as space-efficient as possible.</dd>
+<dd>default value: nested</dd>
+</dl>
+
+<dl>
+<dt>Language Syntax</dt>
+<dd>PHPSass supports two syntax options.</dd>
+<dd>scss: The regular &#8220;Sassy CSS&#8221; style which is a superset of CSS3&#8217;s syntax.</dd>
+<dd>sass: The older syntax known as the indented syntax.</dd>
+<dd>default value: scss</dd>
+</dl>
+</div>
